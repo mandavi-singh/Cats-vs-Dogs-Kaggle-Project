@@ -98,33 +98,40 @@ Dense(1024) ➝ Dense(1, activation='sigmoid')
 ```bash
 git clone https://github.com/mandavi-singh/Cats-vs-Dogs-Classifier.git
 cd Cats-vs-Dogs-Classifier
+```
 
-2. Install dependencies:
+
+
+2. **Install dependencies:**
+```bash
 pip install tensorflow matplotlib numpy
-Download Dataset:
+```
+3. **Download Dataset:**
 
 Get the dataset from Kaggle and place it in the correct folder structure as referenced in the notebook.
 
-Run the Notebook:
+4. **Run the Notebook:**
 
 Open cats_vs_dogs_classifier.ipynb in Jupyter or Kaggle and run all cells.
 
-Make Predictions:
+5. **Make Predictions:**
 
 Load the saved model (cats_dogs_classifier.h5) and run predictions on new images.
 
-🔮 Future Work
+🔮 **Future Work**
 🔄 Add Data Augmentation (rotation, flipping, zooming)
 
 🔁 Apply Transfer Learning (VGG16, ResNet, EfficientNet)
 
 🌐 Deploy as a web app using Streamlit or Flask
 
-🙋‍♀️ Contact
+🙋‍♀️ **Contact**
 Feel free to reach out for questions, collaborations, or feedback.
 
 Author: Mandavi Singh
-🔗 LinkedIn
-🐙 GitHub
+🔗 LinkedIn-: www.linkedin.com/in/mandaviofficial
+<img width="793" height="88" alt="image" src="https://github.com/user-attachments/assets/b472af4a-a5c2-4ec1-a4dc-03e8bd90bb1e" />
+
+
 📧 singhmandavi002@gmail.com
 

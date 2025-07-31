@@ -2,7 +2,7 @@
 # 🐱🐶 Cats vs. Dogs Image Classification using a CNN
 
 This repository contains code and resources for a deep learning project focused on **binary image classification** — distinguishing between images of **cats and dogs** using a **Convolutional Neural Network (CNN)** built with TensorFlow.  
-Developed by **Mandavi Singh** as part of a machine learning curriculum.
+
 
 ---
 
@@ -131,5 +131,5 @@ Feel free to reach out for questions, collaborations, or feedback.
 Author: Mandavi Singh
 🔗 LinkedIn-: www.linkedin.com/in/mandaviofficial
 <img width="793" height="88" alt="image" src="https://github.com/user-attachments/assets/b472af4a-a5c2-4ec1-a4dc-03e8bd90bb1e" />
-📧 singhmandavi002@gmail.com
+📧singhmandavi002@gmail.com
 

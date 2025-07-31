@@ -1,215 +1,130 @@
 # Cats-vs-Dogs-Kaggle-Project
-Cats vs. Dogs Image Classification using a CNN
-This repository contains the code and resources for a deep learning project focused on binary image classification. The goal is to accurately distinguish between images of cats and dogs using a Convolutional Neural Network (CNN) built with TensorFlow. This project was developed by Mandavi Singh as part of a machine learning curriculum.
+# 🐱🐶 Cats vs. Dogs Image Classification using a CNN
 
+This repository contains code and resources for a deep learning project focused on **binary image classification** — distinguishing between images of **cats and dogs** using a **Convolutional Neural Network (CNN)** built with TensorFlow.  
+Developed by **Mandavi Singh** as part of a machine learning curriculum.
 
+---
 
-Table of Contents
-Project Overview
+## 📚 Table of Contents
 
-Dataset
+- [Project Overview](#project-overview)  
+- [Dataset](#dataset)  
+- [Methodology](#methodology)  
+  - [Data Preprocessing](#data-preprocessing)  
+  - [Model Architecture](#model-architecture)  
+  - [Training and Callbacks](#training-and-callbacks)  
+- [Results and Performance](#results-and-performance)  
+- [How to Use](#how-to-use)  
+- [Future Work](#future-work)  
+- [Contact](#contact)  
 
-Methodology
+---
 
-Data Preprocessing
+## 📌 Project Overview
 
-Model Architecture
+This project tackles the classic **Cats vs. Dogs** classification challenge. A custom CNN was constructed and trained on a large dataset to learn distinguishing features of both animals. The entire pipeline was implemented in a **Kaggle Notebook**, leveraging **Tesla T4 GPU** for efficient training.
 
-Training and Callbacks
+- **Tech Stack**: Python, TensorFlow (Keras), NumPy, Matplotlib  
+- **Platform**: Kaggle Notebooks  
+- **Hardware**: Tesla T4 GPU  
 
-Results and Performance
+---
 
-How to Use
+## 🐾 Dataset
 
-Future Work
+- **Source**: Microsoft-sponsored Kaggle competition  
+- **Total Images**: ~25,000 JPGs  
+- **Classes**: `Cat`, `Dog`  
+- **Balanced Data**: 50% cats, 50% dogs  
 
-Contact
+### 🔀 Data Split:
+- **Training**: 80% (20,000 images)  
+- **Validation**: 10% (2,500 images)  
+- **Test**: 10% (2,500 images)  
 
-Project Overview
-This project tackles the classic "Cats vs. Dogs" classification problem. A custom CNN was constructed and trained on a large dataset to learn the distinguishing features of each animal. The entire workflow was implemented within a Kaggle Notebook, leveraging a Tesla T4 GPU for efficient computation and training.
+---
 
+## 🧪 Methodology
 
-Technology Stack: Python, TensorFlow (Keras), Matplotlib, NumPy
+### 🔧 Data Preprocessing
 
+- Removed corrupted images  
+- Resized all images to **150x150 pixels**  
+- Split into `train`, `val`, and `test` folders  
+- Used TensorFlow’s `image_dataset_from_directory()` for efficient loading  
 
-Platform: Kaggle Notebooks 
+### 🧠 Model Architecture
 
+A **Sequential CNN** designed to extract hierarchical features:
 
-Hardware: Tesla T4 GPU 
+Conv2D(32) ➝ Conv2D(64) ➝ MaxPooling2D
+Conv2D(64) ➝ Conv2D(128) ➝ MaxPooling2D
+Conv2D(128) ➝ Conv2D(256) ➝ GlobalAveragePooling2D
+Dense(1024) ➝ Dense(1, activation='sigmoid')
 
-Dataset
-The project utilizes the "Cats vs Dogs" dataset from a Microsoft-sponsored Kaggle competition.
+- **Total Parameters**: 837,121 (All trainable)
 
+### ⚙️ Training and Callbacks
 
-Total Images: Approximately 25,000 JPG files.
+- **Optimizer**: Adam  
+- **Loss Function**: Binary Crossentropy  
+- **Batch Size**: 32  
+- **Epochs**: Up to 50  
+- **Callback**:  
+  - `EarlyStopping` with `patience=3` based on `val_loss`  
+  - Automatically restores best weights
 
+---
 
-Classes: Cat, Dog.
+## 📊 Results and Performance
 
+- ✅ **Test Accuracy**: **84%**  
+- 📉 Training and validation losses dropped from ~0.7 to < 0.2  
+- 📈 Validation Accuracy peaked around **87%**, indicating minimal overfitting  
 
-Class Distribution: The dataset is perfectly balanced, with 50% cat images and 50% dog images. This balance is critical for preventing model bias and ensuring reliable training and evaluation.
-
-
-
-Data Split: The dataset was divided into three subsets:
-
-
-
-Training Set: 80% (20,000 images).
-
-
-
-
-Validation Set: 10% (2,500 images).
-
-
-
-
-Test Set: 10% (2,500 images).
-
-
-Methodology
-Data Preprocessing
-Before training, the data underwent several preprocessing steps:
-
-Corrupted image files were identified and removed from the dataset.
-
-All images were resized to a uniform dimension of 150x150 pixels.
-
-The data was organized into separate subdirectories for the training, validation, and test sets to facilitate loading.
-
-Images were loaded efficiently using TensorFlow's 
-
-image_dataset_from_directory utility.
-
-Model Architecture
-A Sequential CNN model was designed to progressively extract hierarchical features from the images.
-
-
-Structure: The architecture consists of multiple pairs of Conv2D layers followed by MaxPooling2D layers. A 
-
-GlobalAveragePooling2D layer is used to reduce feature maps into a vector before passing them to the final dense layers.
-
-
-Layers: The detailed layer configuration is as follows:
-
-conv2d (32 filters)
-
-conv2d_1 (64 filters)
-
-max_pooling2d
-
-conv2d_2 (64 filters)
-
-conv2d_3 (128 filters)
-
-max_pooling2d_1
-
-conv2d_4 (128 filters)
-
-conv2d_5 (256 filters)
-
-global_average_pooling2d
-
-
-dense (1024 neurons) 
-
-
-dense_1 (1 neuron, sigmoid activation for binary output) 
-
-
-Total Parameters: 837,121 (all are trainable).
-
-Training and Callbacks
-
-Optimizer: Adam.
-
-
-Loss Function: Binary Crossentropy.
-
-
-Batch Size: 32.
-
-
-Epochs: The model was set to train for 50 epochs, but EarlyStopping was used to prevent overfitting.
-
-Callbacks:
-
-
-EarlyStopping: This callback monitored the validation loss (val_loss). Training would halt if no improvement was seen for 3 consecutive epochs (
-
-patience=3) , and the best model weights were restored upon completion.
-
-
-Results and Performance
-The model achieved high accuracy and demonstrated good generalization on unseen data. The final trained model is saved as 
-
-cats_dogs_classifier.h5.
-
-
-Training and Validation Curves: The training and validation accuracy curves stayed close together, with validation accuracy peaking around 87%, indicating the model did not overfit. Both training and validation loss steadily decreased from ~0.7 to below 0.2.
-
-
-
-Overall Test Accuracy: 84%.
-
-Classification Report on Test Data:
+### 🧾 Classification Report:
 | Class | Precision | Recall | F1-Score |
-| :--- | :---: | :---: | :---: |
-| Cat | 0.86  | 0.81  | 0.83  |
+|-------|-----------|--------|----------|
+| Cat   | 0.86      | 0.81   | 0.83     |
+| Dog   | 0.82      | 0.87   | 0.84     |
 
+---
 
+## ▶️ How to Use
 
+1. **Clone the repository:**
 
-| Dog | 0.82  | 0.87  | 0.84  |
-
-
-
-How to Use
-Clone the repository:
-
-Bash
-
+```bash
 git clone https://github.com/mandavi-singh/Cats-vs-Dogs-Classifier.git
 cd Cats-vs-Dogs-Classifier
-Install dependencies:
 
-Bash
-
+2. Install dependencies:
 pip install tensorflow matplotlib numpy
-Download the Dataset: Download the "Cats vs Dogs" dataset from Kaggle and place it in the appropriate directory structure as referenced in the notebook.
+Download Dataset:
 
-Run the Notebook: Open and run the cats_vs_dogs_classifier.ipynb notebook in a Jupyter or Kaggle environment.
+Get the dataset from Kaggle and place it in the correct folder structure as referenced in the notebook.
 
-Use the Saved Model: Load the cats_dogs_classifier.h5 model to make predictions on new images.
+Run the Notebook:
 
-Future Work
-Potential areas for future improvement include:
+Open cats_vs_dogs_classifier.ipynb in Jupyter or Kaggle and run all cells.
 
+Make Predictions:
 
-Data Augmentation: Applying techniques like rotation, flipping, and zooming to artificially expand the dataset and improve model robustness.
+Load the saved model (cats_dogs_classifier.h5) and run predictions on new images.
 
+🔮 Future Work
+🔄 Add Data Augmentation (rotation, flipping, zooming)
 
-Transfer Learning: Utilizing powerful pre-trained models (like VGG16, ResNet, or EfficientNet) to leverage learned features and potentially boost accuracy.
+🔁 Apply Transfer Learning (VGG16, ResNet, EfficientNet)
 
+🌐 Deploy as a web app using Streamlit or Flask
 
-Deployment: Building an interactive web application with Streamlit or Flask to deploy the model for real-world use.
+🙋‍♀️ Contact
+Feel free to reach out for questions, collaborations, or feedback.
 
-Contact
-Feel free to connect with me for any questions or collaborations.
-
-
-Author: Mandavi Singh 
-
-
-LinkedIn: www.linkedin.com/in/mandaviofficial 
-Email: singhmandavi002@gmail.com 
-
-
-
-
-
-
-
-
+Author: Mandavi Singh
+🔗 LinkedIn
+🐙 GitHub
+📧 singhmandavi002@gmail.com
 
